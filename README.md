@@ -8,6 +8,8 @@
 
 **Живая версия:** **https://skrasin.github.io/gallery-ch/**
 
+**Презентация:** [ch-design-system.pdf](presentation/ch-design-system.pdf) — 14 слайдов, 16:9
+
 ---
 
 ## Идея
@@ -68,6 +70,8 @@ assets/mark-vertical.svg          знак, вертикальная верси�
 assets/mark-*-white.svg           те же в инверсии
 assets/facade.jpg                 исходный чертёж фасада
 assets/facade-2x1.png             чертёж, скадрированный в поле знака 2:1
+presentation/ch-design-system.pdf презентация, 14 слайдов 16:9
+presentation/deck.html            её исходник
 ```
 
 `index.html` не тянет ни одного внешнего файла: стили, скрипт и чертёж встроены внутрь. Его можно открыть двойным кликом, отправить письмом или положить на любой хостинг.
@@ -87,6 +91,16 @@ git add -A && git commit -m "Правки в раздел «Знак»" && git p
 ```
 
 GitHub Pages пересобирает страницу автоматически при каждом пуше в `main` — обычно за минуту.
+
+## Как пересобрать презентацию
+
+Слайды свёрстаны в `presentation/deck.html` и печатаются в PDF через headless Chrome — так в файл попадает настоящая Helvetica Neue и векторная графика:
+
+```bash
+cd "presentation" && "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="ch-design-system.pdf" "file://$PWD/deck.html"
+```
+
+Формат страницы задан в самом файле: `@page { size: 13.333in 7.5in }` — это 16:9.
 
 Если меняете токены — правьте их и в `index.html` (раздел «Токены»), и в `tokens/`, чтобы документация не разошлась с файлами.
 
